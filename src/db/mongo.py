@@ -1,11 +1,15 @@
 import os
+from typing import Any, Dict, List
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
 
 class Mongo:
-    def __init__(self) -> None:
+    def __init__(self, database: str, collection: str) -> None:
         self._client = MongoClient(os.getenv('MONGO_CONNECT_STRING'), server_api=ServerApi('1'))
+        self._database_name = database
+        self._collection_name = collection
+        self._collection = self._client.get_database(self._database_name).get_collection(self._collection_name)
 
     def ping(self) -> None:
         try:
@@ -13,3 +17,9 @@ class Mongo:
             print('Pinged your deployment. You successfully connected to MongoDB!')
         except Exception as e:
             print(e)
+
+    def save(self, document: Dict[str, Any]):
+        self._collection.insert_one(document)
+
+    def find_all(self) -> List[Dict[str, Any]]:
+        return [document for document in self._collection.find()]
