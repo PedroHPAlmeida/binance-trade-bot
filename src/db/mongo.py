@@ -1,4 +1,5 @@
 import os
+from typing import overload
 from typing import Any, Dict, List
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
@@ -18,8 +19,19 @@ class Mongo:
         except Exception as e:
             print(e)
 
-    def save(self, document: Dict[str, Any]):
-        self._collection.insert_one(document)
+    @overload
+    def save(self, document: Dict[str, Any]) -> None:
+        ...
+
+    @overload
+    def save(self, document: List[Dict[str, Any]]) -> None:
+        ...
+
+    def save(self, document: Dict[str, Any] | List[Dict[str, Any]]) -> None:
+        if isinstance(document, list):
+            self._collection.insert_many(document)
+        else:
+            self._collection.insert_one(document)
 
     def find_all(self) -> List[Dict[str, Any]]:
         return [document for document in self._collection.find()]
