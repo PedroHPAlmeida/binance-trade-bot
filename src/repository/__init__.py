@@ -1,0 +1,1 @@
+from .statistics_24hr_repo import Statistics24hRepository

@@ -20,18 +20,18 @@ class Mongo:
             print(e)
 
     @overload
-    def save(self, document: Dict[str, Any]) -> None:
+    def save(self, documents: Dict[str, Any]) -> None:
         ...
 
     @overload
-    def save(self, document: List[Dict[str, Any]]) -> None:
+    def save(self, documents: List[Dict[str, Any]]) -> None:
         ...
 
-    def save(self, document: Dict[str, Any] | List[Dict[str, Any]]) -> None:
-        if isinstance(document, list):
-            self._collection.insert_many(document)
+    def save(self, documents: Dict[str, Any] | List[Dict[str, Any]]) -> None:
+        if isinstance(documents, list):
+            self._collection.insert_many(documents)
         else:
-            self._collection.insert_one(document)
+            self._collection.insert_one(documents)
 
     def find_all(self) -> List[Dict[str, Any]]:
         return [document for document in self._collection.find()]

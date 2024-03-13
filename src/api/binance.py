@@ -3,7 +3,7 @@ from typing import Any, Dict, List
 
 from binance.spot import Spot
 
-from .models import MyCoin, TickerPrice, Trade24hData
+from models import MyCoin, TickerPrice, Trade24hData
 
 
 class Binance:
