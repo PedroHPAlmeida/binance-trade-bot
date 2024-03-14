@@ -1,4 +1,5 @@
-from typing import overload, List
+from typing import List, overload
+
 from models import Trade24hData
 
 

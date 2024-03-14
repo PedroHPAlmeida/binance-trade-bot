@@ -1,14 +1,15 @@
-from dataclasses import dataclass
+from datetime import datetime
 from typing import Any, Dict
 
 
-@dataclass
 class TickerPrice:
-    symbol: str
-    price: float
-
-    def __post_init__(self):
-        self.price = float(self.price)
+    def __init__(self, **kwargs):
+        self.symbol: str = kwargs['symbol']
+        self.price = float(kwargs['price'])
+        self.timestamp = datetime.now().isoformat()
 
     def as_dict(self) -> Dict[str, Any]:
-        return {"symbol": self.symbol, "price": self.price}
+        return self.__dict__
+
+    def __str__(self) -> str:
+        return str(self.as_dict())

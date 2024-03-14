@@ -1,5 +1,5 @@
-from typing import Any, Dict
 from datetime import datetime
+from typing import Any, Dict
 
 
 class Trade24hData:
@@ -31,4 +31,4 @@ class Trade24hData:
         return self.__dict__
 
     def __str__(self) -> str:
-        return str(self.__dict__)
+        return str(self.as_dict())
