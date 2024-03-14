@@ -3,14 +3,12 @@ from typing import Any, Dict, List
 
 from binance.spot import Spot
 
-from models import MyCoin, TickerPrice, Trade24hData
+from ..models import MyCoin, TickerPrice, Trade24hData
 
 
 class Binance:
-    def __init__(self, api_key: str = os.getenv('BINANCE_API_KEY'), secret_key: str = os.getenv('BINANCE_SECRET_KEY')) -> None:
-        self._api_key = api_key
-        self._secret_key = secret_key
-        self._client = Spot(api_key=os.getenv('BINANCE_API_KEY'), api_secret=os.getenv('BINANCE_SECRET_KEY'))
+    def __init__(self, client) -> None:
+        self._client = client if client else Spot(api_key=os.getenv('BINANCE_API_KEY'), api_secret=os.getenv('BINANCE_SECRET_KEY'))
         self._recv_window = 60000
 
     def ping(self) -> None:

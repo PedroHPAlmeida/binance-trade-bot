@@ -1,6 +1,6 @@
 from typing import List, overload
 
-from models import TickerPrice
+from ..models import TickerPrice
 
 
 class PriceNowRepository:
