@@ -7,7 +7,7 @@ from ..models import MyCoin, TickerPrice, Trade24hData
 
 
 class Binance:
-    def __init__(self, client) -> None:
+    def __init__(self, client=None) -> None:
         self._client = client if client else Spot(api_key=os.getenv('BINANCE_API_KEY'), api_secret=os.getenv('BINANCE_SECRET_KEY'))
         self._recv_window = 60000
 
