@@ -11,5 +11,5 @@ jobs:
 
   deploy-infra:
     needs: test
-    uses: ./.github/workflows/terraform.yml
+    uses: ./.github/workflows/terraform.yaml
     secrets: inherit
