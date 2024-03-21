@@ -1,6 +1,6 @@
-from src.api import Binance
-from src.db import Mongo
-from src.repository import PriceNowRepository, Statistics24hRepository
+from app.api import Binance
+from app.db import Mongo
+from app.repository import PriceNowRepository, Statistics24hRepository
 
 binance = Binance()
 
