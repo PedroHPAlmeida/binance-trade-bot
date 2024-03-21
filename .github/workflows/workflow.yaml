@@ -8,3 +8,8 @@ jobs:
   test:
     needs: lint
     uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/pytest.yaml@master
+
+  deploy-infra:
+    needs: test
+    uses: ./.github/workflows/terraform.yml
+    secrets: inherit
