@@ -24,8 +24,8 @@ resource "aws_s3_bucket_acl" "github_actions_acl" {
 
 resource "aws_s3_object" "handler_file" {
   bucket = aws_s3_bucket.binance_trades_deployments.bucket
-  key    = "handler.zip"
-  source = "${path.module}/handler.zip"
+  key    = "deploy.zip"
+  source = "${path.module}/deploy.zip"
 
-  etag = filemd5("${path.module}/handler.zip")
+  etag = filemd5("${path.module}/deploy.zip")
 }
