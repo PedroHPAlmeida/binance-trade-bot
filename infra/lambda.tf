@@ -1,4 +1,6 @@
 resource "aws_lambda_function" "lambda_function" {
+  depends_on = [ aws_s3_object.handler_file ]
+
   function_name = "binance_trades"
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "src.handler.handler"
