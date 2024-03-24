@@ -1,13 +1,17 @@
-from .app.api import Binance
-from .app.db import Mongo
-from .app.repository import PriceNowRepository, Statistics24hRepository
+from src.api import Binance
+from src.db import Mongo
+from src.repository import PriceNowRepository, Statistics24hRepository
 
 binance = Binance()
 
 
 def handler(event, context):
-    save_trades_24h()
-    save_prices_now()
+    try:
+        save_trades_24h()
+        save_prices_now()
+        return {'status': 'success'}
+    except Exception as ex:
+        return {'status': 'error', 'message': str(ex)}
 
 
 def save_trades_24h():
