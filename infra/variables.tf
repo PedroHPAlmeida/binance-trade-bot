@@ -12,7 +12,3 @@ variable "MONGO_CONNECT_STRING" {
   type      = string
   sensitive = true
 }
-
-variable "DEPLOYMENT_FILE_ZIP" {
-  type = string
-}
