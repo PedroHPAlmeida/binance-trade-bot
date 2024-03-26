@@ -1,0 +1,5 @@
+- name: Amazon ECR "Login" Action for GitHub Actions
+  uses: aws-actions/amazon-ecr-login@v2
+  with:
+    mask-password: true
+    registry-type: public

@@ -1,0 +1,14 @@
+name: Docker
+
+on: workflow_call
+
+jobs:
+    ecr:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Amazon ECR Login
+          uses: aws-actions/amazon-ecr-login@v2
+          with:
+           mask-password: true
+           registry-type: private
+           skip-logout: false

@@ -4,16 +4,20 @@ on: [push]
 jobs:
   lint:
     uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/flake8.yaml@master
-    
+
   test:
     needs: lint
     uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/pytest.yaml@master
 
-  build:
-    needs: test
-    uses: ./.github/workflows/build.yaml
+  # build:
+  #   needs: test
+  #   uses: ./.github/workflows/build.yaml
+
+  publish:
+    needs: lint
+    uses: ./.github/workflows/docker.yaml
 
   deploy-infra:
-    needs: build
+    needs: publish
     uses: ./.github/workflows/terraform.yaml
     secrets: inherit
