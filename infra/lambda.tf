@@ -4,7 +4,7 @@ resource "aws_lambda_function" "lambda_function" {
   handler       = "handler.handler"
   runtime       = "python3.10"
 
-  image_uri = ""
+  image_uri = "255310614335.dkr.ecr.us-east-1.amazonaws.com/binance-trades-bot:latest"
   package_type = "Image"
 
   environment {

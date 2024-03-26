@@ -6,10 +6,18 @@ jobs:
     ecr:
       runs-on: ubuntu-latest
       steps:
+        - name: Checkout repo
+          uses: actions/checkout@v3
+
+        - name: Configure AWS credentials
+          uses: aws-actions/configure-aws-credentials@v4
+          with:
+            role-to-assume: arn:aws:iam::255310614335:role/gh_actions_role
+            aws-region: aws-region-1
+
         - name: Amazon ECR Login
           uses: aws-actions/amazon-ecr-login@v2
           with:
            mask-password: true
            registry-type: private
            skip-logout: false
-           region: us-east-1
