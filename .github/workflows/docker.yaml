@@ -12,3 +12,4 @@ jobs:
            mask-password: true
            registry-type: private
            skip-logout: false
+           region: us-east-1
