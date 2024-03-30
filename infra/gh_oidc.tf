@@ -35,6 +35,7 @@ resource "aws_iam_role" "gh_actions_role_oidc" {
 data "aws_iam_policy_document" "data_policy" {
   statement {
     actions = [
+      "ecr:UploadLayerPart",
       "ecr:BatchGetImage",
       "ecr:BatchCheckLayerAvailability",
       "ecr:CompleteLayerUpload",
