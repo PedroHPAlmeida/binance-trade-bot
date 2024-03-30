@@ -42,6 +42,7 @@ resource "aws_iam_policy" "ecr_pull_push" {
         "Sid" : "AllowPushPull",
         "Effect" : "Allow",
         "Action" : [
+          "ecr:GetAuthorizationToken",
           "ecr:BatchGetImage",
           "ecr:BatchCheckLayerAvailability",
           "ecr:CompleteLayerUpload",
