@@ -8,8 +8,6 @@ resource "aws_iam_openid_connect_provider" "gh_oidc" {
   thumbprint_list = ["cf23df2207d99a74fbe169e3eba035e633b65d94"]
 }
 
-#   "Federated" : "arn:aws:iam::012345678910:oidc-provider/token.actions.githubusercontent.com"
-
 resource "aws_iam_role" "gh_actions_role_oidc" {
   name = "gh_actions_role_oidc"
   assume_role_policy = jsonencode({
@@ -32,4 +30,33 @@ resource "aws_iam_role" "gh_actions_role_oidc" {
       }
     ]
   })
+}
+
+resource "aws_iam_policy" "ecr_pull_push" {
+  name = "gh_actions_ecr_pull_push"
+
+  policy = jsonencode({
+    "Version" : "2012-10-17",
+    "Statement" : [
+      {
+        "Sid" : "AllowPushPull",
+        "Effect" : "Allow",
+        "Action" : [
+          "ecr:BatchGetImage",
+          "ecr:BatchCheckLayerAvailability",
+          "ecr:CompleteLayerUpload",
+          "ecr:GetDownloadUrlForLayer",
+          "ecr:InitiateLayerUpload",
+          "ecr:PutImage",
+          "ecr:UploadLayerPart"
+        ],
+        "Resource" : "${aws_ecr_repository.ecr_repository_binance_trades.arn}"
+      }
+    ]
+  })
+}
+
+resource "aws_iam_role_policy_attachment" "ecr_pull_push_attachment" {
+  role       = aws_iam_role.gh_actions_role_oidc.name
+  policy_arn = aws_iam_policy.ecr_pull_push.arn
 }
