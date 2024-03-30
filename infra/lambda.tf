@@ -4,7 +4,7 @@ resource "aws_lambda_function" "lambda_function" {
   handler       = "handler.handler"
   runtime       = "python3.10"
 
-  image_uri = "${var.ECR_IMAGE_URI}"
+  image_uri    = var.ECR_IMAGE_URI
   package_type = "Image"
 
   environment {
