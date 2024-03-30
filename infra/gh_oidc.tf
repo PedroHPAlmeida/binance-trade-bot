@@ -35,7 +35,6 @@ resource "aws_iam_role" "gh_actions_role_oidc" {
 data "aws_iam_policy_document" "data_policy" {
   statement {
     actions = [
-      "ecr:GetAuthorizationToken",
       "ecr:BatchGetImage",
       "ecr:BatchCheckLayerAvailability",
       "ecr:CompleteLayerUpload",
@@ -48,13 +47,30 @@ data "aws_iam_policy_document" "data_policy" {
   }
 }
 
-
 resource "aws_iam_policy" "ecr_pull_push" {
   name   = "gh_actions_ecr_pull_push"
   policy = data.aws_iam_policy_document.data_policy.json
 }
 
+data "aws_iam_policy_document" "token" {
+  statement {
+    actions   = ["ecr:GetAuthorizationToken"]
+    resources = ["*"]
+    effect    = "Allow"
+  }
+}
+
+resource "aws_iam_policy" "token" {
+  name   = "gh_actions_token"
+  policy = data.aws_iam_policy_document.token.json
+}
+
 resource "aws_iam_role_policy_attachment" "ecr_pull_push_attachment" {
   role       = aws_iam_role.gh_actions_role_oidc.name
   policy_arn = aws_iam_policy.ecr_pull_push.arn
+}
+
+resource "aws_iam_role_policy_attachment" "token_attachment" {
+  role       = aws_iam_role.gh_actions_role_oidc.name
+  policy_arn = aws_iam_policy.token.arn
 }
