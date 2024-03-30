@@ -30,6 +30,7 @@ jobs:
           env:
             REGISTRY: ${{ steps.login-ecr.outputs.registry }}
             IMAGE_TAG: ${{ github.sha }}
+            ECR_IMAGE_URI: $REGISTRY/binance-trades-bot:$IMAGE_TAG
           run: |
             echo "ECR_IMAGE_URI="$REGISTRY/binance-trades-bot:$IMAGE_TAG >> $GITHUB_OUTPUT
 
