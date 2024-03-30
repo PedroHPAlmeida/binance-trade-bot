@@ -29,8 +29,8 @@ resource "aws_iam_role" "gh_actions_role" {
     "Statement" : [
       {
         "Effect" : "Allow",
-        "Principal": {
-          "Service": "ec2.amazonaws.com"  # Adicione o serviço IAM como principal
+        "Principal" : {
+          "Service" : "ec2.amazonaws.com" # Adicione o serviço IAM como principal
         },
         "Action" : [
           "sts:AssumeRole"

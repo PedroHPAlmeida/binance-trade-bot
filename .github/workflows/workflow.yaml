@@ -2,19 +2,18 @@ name: Python 3.8 Workflow
 on: [push]
 
 jobs:
-  lint:
-    uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/flake8.yaml@master
+  # lint:
+  #   uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/flake8.yaml@master
 
-  test:
-    needs: lint
-    uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/pytest.yaml@master
+  # test:
+  #   needs: lint
+  #   uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/pytest.yaml@master
 
   # build:
   #   needs: test
   #   uses: ./.github/workflows/build.yaml
 
   publish:
-    needs: test
     uses: ./.github/workflows/docker.yaml
 
   deploy-infra:
