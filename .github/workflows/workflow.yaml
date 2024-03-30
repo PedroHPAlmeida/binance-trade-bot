@@ -1,6 +1,10 @@
 name: Python 3.8 Workflow
 on: [push]
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   # lint:
   #   uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/flake8.yaml@master
