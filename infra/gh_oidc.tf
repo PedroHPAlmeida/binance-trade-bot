@@ -32,29 +32,26 @@ resource "aws_iam_role" "gh_actions_role_oidc" {
   })
 }
 
-resource "aws_iam_policy" "ecr_pull_push" {
-  name = "gh_actions_ecr_pull_push"
-
-  policy = jsonencode({
-    "Version" : "2012-10-17",
-    "Statement" : [
-      {
-        "Sid" : "AllowPushPull",
-        "Effect" : "Allow",
-        "Action" : [
-          "ecr:GetAuthorizationToken",
-          "ecr:BatchGetImage",
-          "ecr:BatchCheckLayerAvailability",
-          "ecr:CompleteLayerUpload",
-          "ecr:GetDownloadUrlForLayer",
-          "ecr:InitiateLayerUpload",
-          "ecr:PutImage",
-          "ecr:UploadLayerPart"
-        ],
-        "Resource" : "${aws_ecr_repository.ecr_repository_binance_trades.arn}"
-      }
+data "aws_iam_policy_document" "data_policy" {
+  statement {
+    actions = [
+      "ecr:GetAuthorizationToken",
+      "ecr:BatchGetImage",
+      "ecr:BatchCheckLayerAvailability",
+      "ecr:CompleteLayerUpload",
+      "ecr:GetDownloadUrlForLayer",
+      "ecr:InitiateLayerUpload",
+      "ecr:PutImage"
     ]
-  })
+    resources = [aws_ecr_repository.ecr_repository_binance_trades.arn]
+    effect    = "Allow"
+  }
+}
+
+
+resource "aws_iam_policy" "ecr_pull_push" {
+  name   = "gh_actions_ecr_pull_push"
+  policy = data.aws_iam_policy_document.data_policy.json
 }
 
 resource "aws_iam_role_policy_attachment" "ecr_pull_push_attachment" {
