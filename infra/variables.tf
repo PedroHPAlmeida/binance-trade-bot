@@ -12,3 +12,8 @@ variable "MONGO_CONNECT_STRING" {
   type      = string
   sensitive = true
 }
+
+variable "ECR_IMAGE_URI" {
+  type      = string
+  sensitive = false
+}
