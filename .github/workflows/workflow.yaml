@@ -18,7 +18,7 @@ jobs:
 
   deploy-infra:
     needs: publish
-    uses: PedroHPAlmeida/actions-workflows-terraform/.github/workflows/terraform.yaml@1.0
+    uses: PedroHPAlmeida/actions-workflows-terraform/.github/workflows/terraform.yaml@1.1
     with:
       working-directory: ./infra
     secrets:
