@@ -14,7 +14,7 @@ jobs:
   #   uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/pytest.yaml@master
 
   publish:
-    uses: PedroHPAlmeida/actions-workflows-ecr/.github/workflows/actions-workflows-ecr/publish-ecr.yaml@master
+    uses: PedroHPAlmeida/actions-workflows-ecr/.github/workflows/publish-ecr.yaml@master
     with:
       image_name: binance-trades-bot
       image_tag: ${{ github.sha }}
