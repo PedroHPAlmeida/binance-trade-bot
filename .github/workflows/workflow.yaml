@@ -13,14 +13,13 @@ jobs:
   #   needs: lint
   #   uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/pytest.yaml@master
 
-  # build:
-  #   needs: test
-  #   uses: ./.github/workflows/build.yaml
-
   publish:
-    uses: ./.github/workflows/docker.yaml
+    uses: ./.github/workflows/publish.yaml
 
   deploy-infra:
     needs: publish
-    uses: ./.github/workflows/terraform.yaml
-    secrets: inherit
+    uses: PedroHPAlmeida/actions-workflows-terraform/.github/workflows/terraform.yaml@1.0
+    with:
+      working-directory: ./infra
+    secrets:
+      tf_api_token: ${{ secrets.TF_API_TOKEN }}
