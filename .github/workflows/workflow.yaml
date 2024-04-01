@@ -19,8 +19,8 @@ jobs:
       image_name: binance-trades-bot
       image_tag: ${{ github.sha }}
     secrets:
-      aws_role_to_assume: arn:aws:iam::255310614335:role/gh_actions_role_oidc
-      aws_region: us-east-1
+      aws_role_to_assume: ${{ secrets.AWS_ROLE }}
+      aws_region: ${{ secrets.AWS_REGION }}
 
   deploy-infra:
     needs: publish
