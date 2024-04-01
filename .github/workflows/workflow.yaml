@@ -1,4 +1,4 @@
-name: Python 3.8 Workflow
+name: Python Workflow
 on: [push]
 
 permissions:
@@ -14,7 +14,13 @@ jobs:
   #   uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/pytest.yaml@master
 
   publish:
-    uses: ./.github/workflows/publish.yaml
+    uses: PedroHPAlmeida/actions-workflows-terraform/.github/workflows/actions-workflows-ecr@master
+    with:
+      image_name: binance-trades-bot
+      image_tag: ${{ github.sha }}
+    secrets:
+      aws_role_to_assume: arn:aws:iam::255310614335:role/gh_actions_role_oidc
+      aws_region: us-east-1
 
   deploy-infra:
     needs: publish
