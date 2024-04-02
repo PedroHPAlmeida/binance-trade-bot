@@ -7,11 +7,11 @@ permissions:
 
 jobs:
   lint:
-    uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/flake8.yaml@master
+    uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/flake8.yaml@1.0
 
   test:
     needs: lint
-    uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/pytest.yaml@master
+    uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/pytest.yaml@1.0
 
   publish:
     needs: test
