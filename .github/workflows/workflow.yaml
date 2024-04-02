@@ -7,19 +7,19 @@ permissions:
 
 jobs:
   lint:
-    uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/flake8.yaml@1.1
+    uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/flake8.yaml@1.2
     with:
       python-version: '3.10' 
       
   test:
     needs: lint
-    uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/pytest.yaml@1.1
+    uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/pytest.yaml@1.2
     with:
       python-version: '3.10' 
 
   publish:
     needs: test
-    uses: PedroHPAlmeida/actions-workflows-ecr/.github/workflows/publish-ecr.yaml@1.0
+    uses: PedroHPAlmeida/actions-workflows-ecr/.github/workflows/publish-ecr.yaml@1.1
     with:
       image_name: binance-trades-bot
       image_tag: ${{ github.sha }}
@@ -29,8 +29,9 @@ jobs:
 
   deploy-infra:
     needs: publish
-    uses: PedroHPAlmeida/actions-workflows-terraform/.github/workflows/terraform.yaml@1.1
+    uses: PedroHPAlmeida/actions-workflows-terraform/.github/workflows/terraform.yaml@1.3
     with:
+      terraform_version: '1.7.5'
       working-directory: ./infra
     secrets:
       tf_api_token: ${{ secrets.TF_API_TOKEN }}
