@@ -19,7 +19,7 @@ jobs:
 
   publish:
     needs: test
-    uses: PedroHPAlmeida/actions-workflows-ecr/.github/workflows/publish-ecr.yaml@1.2
+    uses: PedroHPAlmeida/actions-workflows-ecr/.github/workflows/publish-ecr.yaml@1.3
     with:
       image_name: binance-trades-bot
       image_tag: ${{ github.sha }}
