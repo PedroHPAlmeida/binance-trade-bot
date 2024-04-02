@@ -6,12 +6,12 @@ permissions:
   contents: read
 
 jobs:
-  # lint:
-  #   uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/flake8.yaml@master
+  lint:
+    uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/flake8.yaml@master
 
-  # test:
-  #   needs: lint
-  #   uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/pytest.yaml@master
+  test:
+    needs: lint
+    uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/pytest.yaml@master
 
   publish:
     uses: PedroHPAlmeida/actions-workflows-ecr/.github/workflows/publish-ecr.yaml@1.0
