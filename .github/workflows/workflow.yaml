@@ -10,7 +10,7 @@ jobs:
     uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/flake8.yaml@1.2
     with:
       python-version: '3.10' 
-      
+
   test:
     needs: lint
     uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/pytest.yaml@1.2
@@ -27,7 +27,7 @@ jobs:
     secrets:
       aws_role_to_assume: ${{ secrets.AWS_ROLE }}
 
-  deploy-infra:
+  infra:
     needs: publish
     uses: PedroHPAlmeida/actions-workflows-terraform/.github/workflows/terraform.yaml@1.3
     with:
