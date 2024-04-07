@@ -2,7 +2,7 @@ from unittest.mock import MagicMock
 
 from pytest import fixture
 
-from src.api.binance import Binance
+from src.binance import Binance
 
 
 @fixture
