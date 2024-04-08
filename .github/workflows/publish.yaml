@@ -19,12 +19,12 @@ jobs:
         run: |
             zip -r deploy.zip src/ dependencies.zip
 
-      # - name: default deploy
-      #   uses: appleboy/lambda-action@v0.1.9
-      #   with:
-      #     aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-      #     aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-      #     aws_region: ${{ secrets.AWS_REGION }}
-      #     handler: handler
-      #     function_name: handler
-      #     zip_file: deploy.zip
+      - name: default deploy
+        uses: appleboy/lambda-action@v0.1.9
+        with:
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws_region: ${{ secrets.AWS_REGION }}
+          handler: handler
+          function_name: handler
+          zip_file: deploy.zip
