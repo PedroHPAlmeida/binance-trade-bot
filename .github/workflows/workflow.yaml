@@ -19,4 +19,4 @@ jobs:
 
   deploy:
     needs: test
-    uses: ./github/workflows/publish.yaml
+    uses: ./.github/workflows/publish.yaml
