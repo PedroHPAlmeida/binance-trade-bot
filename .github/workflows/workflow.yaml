@@ -20,3 +20,4 @@ jobs:
   deploy:
     needs: test
     uses: ./.github/workflows/publish.yaml
+    secrets: inherit

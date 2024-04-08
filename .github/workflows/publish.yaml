@@ -19,7 +19,7 @@ jobs:
         run: |
             zip -r deploy.zip src/ dependencies.zip
 
-      - name: default deploy
+      - name: Deploy
         uses: appleboy/lambda-action@v0.1.9
         with:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
