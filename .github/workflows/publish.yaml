@@ -17,7 +17,7 @@ jobs:
 
       - name: Zip file
         run: |
-            zip -r deploy.zip handler.py dependencies.zip
+            zip -r deploy.zip src/ dependencies.zip
 
       # - name: default deploy
       #   uses: appleboy/lambda-action@v0.1.9
