@@ -9,21 +9,13 @@ jobs:
       - name: Checkout source code
         uses: actions/checkout@v4
 
-      - name: Package dependencies
+      - name: Zip code
         run: |
           mkdir dependencies
-          pip install -r requirements.txt --target ./dependencies
-          if [ -n "$(ls -A dependencies)" ]; then
-              cd ./dependencies
-              zip -r ../dependencies.zip .
-              cd ..
-          else
-              echo "No dependencies installed."
-          fi
-              
-      - name: Zip file
-        run: |
-            zip -j deploy.zip src/*.py dependencies.zip
+          pip install -r requirements.txt --target ./src
+          cd ./src
+          zip -r ../deploy.zip .
+          cd ..
 
       - name: Deploy
         uses: appleboy/lambda-action@v0.1.9
