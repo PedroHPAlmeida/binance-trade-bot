@@ -11,17 +11,19 @@ jobs:
 
       - name: Package dependencies
         run: |
-            mkdir dependencies
-            pip install -r requirements.txt --target ./dependencies
-            cd ./dependencies
-            zip ../dependencies.zip .
-            cd ..
-
+          mkdir dependencies
+          pip install -r requirements.txt --target ./dependencies
+          if [ -n "$(ls -A dependencies)" ]; then
+              cd ./dependencies
+              zip -r ../dependencies.zip .
+              cd ..
+          else
+              echo "No dependencies installed."
+          fi
+              
       - name: Zip file
         run: |
-            cd src/
             zip ../deploy.zip src/*.py dependencies.zip
-            cd ..
 
       - name: Deploy
         uses: appleboy/lambda-action@v0.1.9
