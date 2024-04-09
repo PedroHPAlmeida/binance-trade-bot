@@ -23,7 +23,7 @@ jobs:
               
       - name: Zip file
         run: |
-            zip deploy.zip src/*.py dependencies.zip
+            zip -j deploy.zip src/*.py dependencies.zip
 
       - name: Deploy
         uses: appleboy/lambda-action@v0.1.9
