@@ -1,6 +1,6 @@
 from typing import List, overload
 
-from .trade_24h_data import Trade24hData
+from trade_24h_data import Trade24hData
 
 
 class Statistics24hRepository:

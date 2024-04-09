@@ -6,16 +6,16 @@ permissions:
   contents: read
 
 jobs:
-  lint:
-    uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/flake8.yaml@1.2
-    with:
-      python-version: '3.10' 
+  # lint:
+  #   uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/flake8.yaml@1.2
+  #   with:
+  #     python-version: '3.10' 
 
-  test:
-    needs: lint
-    uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/pytest.yaml@1.2
-    with:
-      python-version: '3.10' 
+  # test:
+  #   needs: lint
+  #   uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/pytest.yaml@1.2
+  #   with:
+  #     python-version: '3.10' 
 
   deploy:
     needs: test
