@@ -18,5 +18,9 @@ jobs:
   #     python-version: '3.10' 
 
   deploy:
-    uses: ./.github/workflows/publish.yaml
+    uses: PedroHPAlmeida/actions-workflows-deploy-lambda/.github/workflows/deploy-lambda.yaml@1.1
     secrets: inherit
+    with:
+      src_dir: ./src
+      function_name: binance_trades
+      handler: handler.handler 
