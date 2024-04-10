@@ -8,8 +8,8 @@ binance = Binance()
 
 def handler(event, context):
     try:
-        # save_trades_24h()
-        # save_prices_now()
+        save_trades_24h()
+        save_prices_now()
         return {'status': 'success'}
     except Exception as ex:
         return {'status': 'error', 'message': str(ex)}
