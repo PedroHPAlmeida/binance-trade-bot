@@ -1,4 +1,4 @@
-from binance import Binance
+from binance_api import Binance
 from mongo import Mongo
 from price_now_repo import PriceNowRepository
 from statistics_24hr_repo import Statistics24hRepository
