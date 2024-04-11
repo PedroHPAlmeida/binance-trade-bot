@@ -19,7 +19,7 @@ jobs:
 
   deploy:
     needs: test
-    uses: PedroHPAlmeida/actions-workflows-deploy-lambda/.github/workflows/deploy-lambda.yaml@1.5
+    uses: PedroHPAlmeida/actions-workflows-deploy-lambda/.github/workflows/deploy-lambda.yaml@1.6
     with:
       function_name: binance_trades
       handler: handler.handler 
