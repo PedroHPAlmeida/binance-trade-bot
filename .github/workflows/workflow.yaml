@@ -6,21 +6,20 @@ permissions:
   contents: read
 
 jobs:
-  # lint:
-  #   uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/flake8.yaml@1.2
-  #   with:
-  #     python-version: '3.10' 
+  lint:
+    uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/flake8.yaml@1.2
+    with:
+      python-version: '3.10' 
 
-  # test:
-  #   needs: lint
-  #   uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/pytest.yaml@1.2
-  #   with:
-  #     python-version: '3.10' 
+  test:
+    needs: lint
+    uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/pytest.yaml@1.2
+    with:
+      python-version: '3.10' 
 
   deploy:
-    uses: PedroHPAlmeida/actions-workflows-deploy-lambda/.github/workflows/deploy-lambda.yaml@1.3
+    uses: PedroHPAlmeida/actions-workflows-deploy-lambda/.github/workflows/deploy-lambda.yaml@1.4
     with:
-      src_dir: ./src
       function_name: binance_trades
       handler: handler.handler 
     secrets:
