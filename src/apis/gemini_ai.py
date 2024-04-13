@@ -1,8 +1,6 @@
 import os
-import textwrap
 
 import google.generativeai as genai
-from markdown import markdown
 
 
 class GeminiAI:
@@ -13,8 +11,4 @@ class GeminiAI:
 
     def generate(self, prompt: str) -> str:
         response = self._model.generate_content(prompt)
-        return self.to_markdown(response.text)
-
-    def to_markdown(self, text: str) -> str:
-        text = text.replace('•', '  *')
-        return markdown(textwrap.indent(text, '> ', predicate=lambda _: True))
+        return response.text
