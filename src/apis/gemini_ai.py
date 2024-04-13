@@ -11,4 +11,4 @@ class GeminiAI:
 
     def generate(self, prompt: str) -> str:
         response = self._model.generate_content(prompt)
-        return response.text
+        return response.text.replace('*', '')
