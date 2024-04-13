@@ -18,8 +18,3 @@ class GeminiAI:
     def to_markdown(self, text: str) -> str:
         text = text.replace('•', '  *')
         return markdown(textwrap.indent(text, '> ', predicate=lambda _: True))
-
-
-if __name__ == '__main__':
-    ai = GeminiAI()
-    print(ai.generate('Por que o Brasil elegeu um ladrão condenado como presidente da república?'))
