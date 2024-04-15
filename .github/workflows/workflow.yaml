@@ -1,25 +1,21 @@
 name: Python Workflow
 on: [push]
 
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
   lint:
-    uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/flake8.yaml@1.2
+    uses: gh-actions-workflows/python-workflows/.github/workflows/flake8.yaml@1.2
     with:
       python-version: '3.10' 
 
   test:
     needs: lint
-    uses: PedroHPAlmeida/actions-workflows-python/.github/workflows/pytest.yaml@1.2
+    uses: gh-actions-workflows/python-workflows/.github/workflows/pytest.yaml@1.2
     with:
       python-version: '3.10' 
 
   deploy:
     needs: test
-    uses: PedroHPAlmeida/actions-workflows-deploy-lambda/.github/workflows/deploy-lambda.yaml@1.6
+    uses: gh-actions-workflows/aws-lambda-workflows/.github/workflows/deploy-lambda.yaml@1.6
     with:
       function_name: binance_trades
       handler: handler.handler 
