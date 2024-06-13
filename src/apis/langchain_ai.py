@@ -7,7 +7,7 @@ from langchain_openai import ChatOpenAI
 
 class LLM:
     def __init__(self, token: str = os.getenv('OPENAI_API_KEY')) -> None:
-        self._llm = ChatOpenAI(api_key=token)
+        self._llm = ChatOpenAI(model='gpt-4o', api_key=token)
         self._str_parser = StrOutputParser()
 
     def generate(self, prompt: str | ChatPromptTemplate, **kwargs) -> str:
