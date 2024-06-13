@@ -15,7 +15,7 @@ jobs:
 
   deploy:
     needs: test
-    uses: gh-actions-workflows/aws-lambda-workflows/.github/workflows/deploy-lambda.yaml@v1.7
+    uses: gh-actions-workflows/aws-lambda-workflows/.github/workflows/deploy-lambda.yaml@v1.8
     with:
       function_name: binance_trades
       handler: handler.handler 
