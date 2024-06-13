@@ -31,3 +31,4 @@ def get_prompt(template_id: str) -> ChatPromptTemplate:
     template = next((t for t in TEMPLATES if t['id'] == template_id), None)
     if template is None:
         raise ValueError(f'Invalid template id: {template_id}')
+    return template['prompt']
