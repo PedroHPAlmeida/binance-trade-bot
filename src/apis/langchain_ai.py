@@ -11,4 +11,4 @@ class LLM:
     def generate(self, prompt: str | ChatPromptTemplate, **kwargs) -> str:
         if isinstance(prompt, ChatPromptTemplate):
             prompt = prompt.format_messages(**kwargs)
-        return self._llm.invoke(prompt)
+        return self._llm.invoke(prompt)['content']
