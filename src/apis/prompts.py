@@ -11,7 +11,7 @@ The script took {execution_time} to execute.\
 The message must be written entirely in Brazilian Portuguese''',
     },
     {
-        'id': 'error',
+        'id': 'ERROR',
         'template': '''You are responsible for writing creative notification messages for script executions. \
 Write a creative message stating that an error occurred while running the script. \
 As the message will be sent via Telegram, avoid characters that will not be interpreted correctly. Use emojis as much as you want. \
@@ -28,7 +28,7 @@ for template in TEMPLATES:
 
 
 def get_prompt(template_id: str) -> ChatPromptTemplate:
-    template = next((t for t in TEMPLATES if t['id'] == template_id), None)
+    template = next((t for t in TEMPLATES if t['id'] == template_id.upper()), None)
     if template is None:
         raise ValueError(f'Invalid template id: {template_id}')
     return template['prompt']
