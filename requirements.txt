@@ -2,7 +2,7 @@ requests==2.31.0
 pymongo==4.6.2
 python-dotenv==1.0.1
 binance-connector==3.6.0
-langchain==0.2.3
+langchain==0.2.5
 langchain-openai==0.1.8
 langchain-community==0.2.5
 flake8==6.1.0
