@@ -14,6 +14,7 @@ def handler(event, context):
         save_trades_24h()
         save_prices_now()
         # send_message(define_message('success'))
+        send_message('Executou')
         send_message(recommend.most_valued())
         return {'status': 'success'}
     except Exception as ex:
