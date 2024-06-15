@@ -10,6 +10,8 @@ from langchain_text_splitters import CharacterTextSplitter
 from src.apis.custom_dict_loader import DictDocumentLoader
 from src.db.price_now_repo import PriceNowRepository
 from src.db.statistics_24hr_repo import Statistics24hRepository
+import logging
+logger = logging.getLogger(__name__)
 
 
 class Recommend:
@@ -47,15 +49,15 @@ class Recommend:
             'last_1_hour_trades': last_1_hour_trades,
             'last_5_minutes_trades': last_5_minutes_trades,
         }
-        print('Dicionários:', str({**prices, **trades}))
+        logger.info('Dicionários:', str({**prices, **trades}))
 
         loader = DictDocumentLoader({**prices, **trades})
         documents = loader.load()
 
-        print('Documents:', documents)
+        logger.info('Documents:', documents)
         text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
         texts = text_splitter.split_documents(documents)
-        print('Texts Splitted:', texts)
+        logger.info('Texts Splitted:', texts)
         embeddings = OpenAIEmbeddings()
         db = FAISS.from_documents(texts, embeddings)
         retriever = db.as_retriever()
@@ -86,5 +88,5 @@ class Recommend:
             * In the last 5 minutes?
             '''
         )
-        print(response)
+        logger.info(response)
         return response
