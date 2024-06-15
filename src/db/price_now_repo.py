@@ -1,3 +1,5 @@
+import datetime
+from datetime import timedelta
 from typing import List, overload
 
 from src.models import TickerPrice
@@ -24,3 +26,9 @@ class PriceNowRepository:
     def find_all(self) -> List[TickerPrice]:
         ticker_prices = self._db.find_all()
         return [TickerPrice(**ticker) for ticker in ticker_prices]
+
+    def find_by_last_time(self, time: timedelta) -> List[TickerPrice]:
+        last_time = datetime.now() - time
+        ticker_prices = self.find_all()
+        last_time_ticker_prices = [ticker for ticker in ticker_prices if ticker.timestamp > last_time]
+        return last_time_ticker_prices

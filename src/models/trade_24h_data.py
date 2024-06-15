@@ -25,10 +25,10 @@ class Trade24hData:
         self.firstId = int(kwargs['firstId'])
         self.lastId = int(kwargs['lastId'])
         self.count = int(kwargs['count'])
-        self.timestamp = datetime.now().isoformat()
+        self.timestamp = datetime.fromisoformat(kwargs.get('timestamp', datetime.now().isoformat()))
 
     def as_dict(self) -> Dict[str, Any]:
-        return self.__dict__
+        return {**self.__dict__, 'timestamp': self.timestamp.isoformat()}
 
     def __str__(self) -> str:
         return str(self.as_dict())

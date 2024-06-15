@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta
 from typing import List, overload
 
 from src.models import Trade24hData
@@ -24,3 +25,9 @@ class Statistics24hRepository:
     def find_all(self) -> List[Trade24hData]:
         trades = self._db.find_all()
         return [Trade24hData(**trade) for trade in trades]
+
+    def find_by_last_time(self, time: timedelta) -> List[Trade24hData]:
+        last_time = datetime.now() - time
+        trades = self.find_all()
+        last_time_trades = [trade for trade in trades if trade.timestamp > last_time]
+        return last_time_trades
