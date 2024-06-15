@@ -47,11 +47,15 @@ class Recommend:
             'last_1_hour_trades': last_1_hour_trades,
             'last_5_minutes_trades': last_5_minutes_trades,
         }
+        print('Dicionários:', str({**prices, **trades}))
 
         loader = DictDocumentLoader({**prices, **trades})
         documents = loader.load()
+
+        print('Documents:', documents)
         text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
         texts = text_splitter.split_documents(documents)
+        print('Texts Splitted:', texts)
         embeddings = OpenAIEmbeddings()
         db = FAISS.from_documents(texts, embeddings)
         retriever = db.as_retriever()
@@ -72,7 +76,7 @@ class Recommend:
 
         chain = {'context': retriever | format_docs, 'question': RunnablePassthrough()} | prompt | model | StrOutputParser()
 
-        return chain.invoke(
+        response = chain.invoke(
             '''Which currencies have appreciated the most:
             * In the last month?
             * In the last 7 days?
@@ -82,3 +86,5 @@ class Recommend:
             * In the last 5 minutes?
             '''
         )
+        print(response)
+        return response
